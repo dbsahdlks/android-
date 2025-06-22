@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Android 12 及以下存储权限 -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" /> <!-- Android 13+ 媒体权限 -->
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        android:minSdkVersion="33" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.OrderFood"
+        tools:targetApi="33">
+        <activity
+            android:name=".ExportActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.user.UserManageManCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.user.UserManageManUpdatePwdActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.user.UserManageManUpdateMesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.user.UserManageManOrderNotFinishActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.user.UserFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.user.ManageUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.man.ManageManCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.man.ManageManOrderNotFinishActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.man.ManageManUpdatePwdActivity"
+            android:exported="false" /> <!-- 建议更新为最新 API 版本 -->
+        <!-- 所有 Activity 保持 exported="false"（安全实践） -->
+        <activity
+            android:name=".activity.man.ManageManUpdateMesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.man.ManageManUpdateFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.man.ManageManAddFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.man.ManageManActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".activity.man.RegisterManActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".activity.user.RegisterUserActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- FileProvider 配置 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>
